@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "df0e9ee7-593b-4a0b-bf95-4ca709c5146a",
+		"name": "APIS_SPRING_PARCIAL4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15330184"
+	},
+	"item": [
+		{
+			"name": "GetAllOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/orders"
+			},
+			"response": []
+		},
+		{
+			"name": "SaveOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 2,\r\n    \"carId\": 2,\r\n    \"model\": \"Nissan\",\r\n \"startTime\": \"2023-12-09T10:30:00\",\r\n  \"endTime\": \"2023-12-09T12:30:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/orders"
+			},
+			"response": []
+		},
+		{
+			"name": "MostRented",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/most-rented-cars?month=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"most-rented-cars"
+					],
+					"query": [
+						{
+							"key": "month",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RentsPerUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/vehicles-per-user"
+			},
+			"response": []
+		},
+		{
+			"name": "RentsPerVehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/rental-count-per-vehicle"
+			},
+			"response": []
+		}
+	]
+}
