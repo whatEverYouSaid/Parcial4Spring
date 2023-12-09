@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -72,5 +69,16 @@ public class OrderService {
 
         return response;
     }
+
+    public void deleteOrderById(Long orderId) {
+        Optional<PlacedOrder> orderOptional = orderRepository.findById(orderId);
+        if (orderOptional.isPresent()) {
+            orderRepository.deleteById(orderId);
+            log.info("Order with ID {} deleted successfully.", orderId);
+        } else {
+            log.warn("Order with ID {} not found.", orderId);
+        }
+    }
+
 
 }
