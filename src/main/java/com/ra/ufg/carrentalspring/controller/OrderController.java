@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,9 +65,12 @@ public class OrderController {
 
     }
     @DeleteMapping("/orders/{orderId}")
-    public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
+    public Map<String, Object> deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrderById(orderId);
-        return new ResponseEntity<>("Order with ID " + orderId + " deleted successfully.", HttpStatus.OK);
+        Map<String, Object> respuesta = new HashMap<>();
+        respuesta.put("message", String.format("Order with ID %s deleted successfully.", orderId));
+        respuesta.put("id",  orderId);
+        return respuesta;
     }
 
 
