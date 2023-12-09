@@ -35,9 +35,11 @@ public class PlacedOrder {
     //@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime startTime;
 
-
     @Column(name = "end_time", nullable = false)
    // @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime endTime;
+
+    @Column(name = "email", nullable = false)
+    private String email;
 
 }

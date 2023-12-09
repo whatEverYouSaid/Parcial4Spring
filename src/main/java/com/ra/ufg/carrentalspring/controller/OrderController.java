@@ -25,6 +25,7 @@ public class OrderController {
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
     private final OrderService orderService;
+    private final MailSenderService mailService;
 
     @GetMapping("/orders")
     public List<PlacedOrder> getOrders() {
@@ -33,6 +34,9 @@ public class OrderController {
 
     @PostMapping("/orders")
     public ResponseEntity<PlacedOrder> submitOrder(@RequestBody PlacedOrder order) {
+        PlacedOrder savedOrder = orderService.nuevaOrden(order);
+        mailService.sendNewMail(String.valueOf(savedOrder.getEmail()), "Su orden ha sido creada", "Orden creada " + savedOrder.getId());
+
         return new ResponseEntity<>(
                 orderService.nuevaOrden(order),
                 HttpStatus.OK);
@@ -54,15 +58,13 @@ public class OrderController {
 
     @GetMapping("/rental-count-per-vehicle")
     public ResponseEntity<List<Map<String, Object>>> getRentalCountPerVehicle() {
-        foo();
         return new ResponseEntity<>(
-
                 orderService.getRentalCountPerVehicle(),
                 HttpStatus.OK);
 
     }
 
-    private final MailSenderService mailService;
+
 
     public void foo(){
         mailService.sendNewMail("ramosargueta@gmail.com", "Subject right here", "Body right there!");
